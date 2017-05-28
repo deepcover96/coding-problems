@@ -19,11 +19,11 @@ class Three {
     if (length <= 0) return;
     if (arr == null) return;
 
-    // assume length of final string to be worst case: length * 3
-    int writeIndex = (length * 3) - 1;	 
-    int newLength = writeIndex;
+    // count the spaces
+    int count = countSpaces(arr, length);
 
-    if(writeIndex >= arr.length) return;
+    // assume length of final string to be worst case: length * 3
+    int writeIndex = (count * 2) + length - 1;
 
     // read array from back to front, copying characters to the end of the array.
     for (int i = length - 1; i >= 0; i--) {
@@ -38,8 +38,8 @@ class Three {
     }
 
     // when complete, copy the final string back to the front of the array
-    newLength -= writeIndex;
-    moveStringToFront(arr, writeIndex + 1, newLength);
+    //newLength -= writeIndex;
+    //moveStringToFront(arr, writeIndex + 1, newLength);
 
     System.out.println(new String(arr));
 	}
@@ -53,16 +53,13 @@ class Three {
     return index - 2;
   }
 
-  // move the string to front of array
-  private static void moveStringToFront(char[] arr, int startIndex, int length) {
-    int index = 0;    
-    for (int i = startIndex; i < length + startIndex; i++) {
-      arr[index] = arr[i];
-      index += 1;
+  // count spaces in an array
+  private static int countSpaces(char[] arr, int length) {
+    int count = 0;
+    for (int i = 0; i < length; i++) {
+      if (arr[i] == ' ')
+        count += 1;
     }
-
-    // terminate
-    if (index < arr.length)
-      arr[index] = '/';
+    return count;
   }
 }
