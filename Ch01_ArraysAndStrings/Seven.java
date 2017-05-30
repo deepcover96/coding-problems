@@ -29,6 +29,7 @@ class Seven {
 	// Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the
   // image is 4 bytes, write a method to rotate the image by 90 degrees.  Can you do this
   // in place?
+  // O(n^2) since we have to touch every index
   public static boolean rotate(int[][] matrix) {
     if (matrix.length == 0 || matrix[0].length != matrix.length) return false;
 
@@ -70,8 +71,8 @@ class Seven {
   private static void printMatrix(int[][] matrix) {
     int n = matrix[0].length;
 
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
+    for (int j = 0; j < n; j++) {
+      for (int i = 0; i < n; i++) {
         System.out.print(matrix[i][j]);
       }
       System.out.println();
@@ -86,11 +87,10 @@ class Seven {
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
         matrix[i][j] = i;
-        System.out.print(i);
       }
-      System.out.println();
     }
-    System.out.println();
+
+    printMatrix(matrix);
 
     return matrix;
   }
