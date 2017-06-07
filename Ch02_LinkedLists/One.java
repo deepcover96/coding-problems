@@ -3,7 +3,7 @@ import java.util.*;
 class One {
   public static void main(String[] args) {
     
-    LinkedList ll = createList();
+    LinkedList ll = LinkedList.createList();
     ll.print();
     removeDuplicates(ll);
     ll.print();
@@ -11,7 +11,7 @@ class One {
     ll.print();
 
 
-    ll = createList();
+    ll = LinkedList.createList();
     ll.print();
     removeDuplicatesInPlace(ll);
     ll.print();
@@ -71,27 +71,6 @@ class One {
       }
       n = n.getNext();
     }
-  }
-
-  private static LinkedList createList() {
-    LinkedList ll = new LinkedList();
-    Node one = new Node(1);
-    Node two = new Node(2);
-    Node three = new Node(3);
-    Node three1 = new Node(3);
-    Node three2 = new Node(3);
-    Node three3 = new Node(3);
-    Node two2 = new Node(2);
-
-    ll.append(two);
-    ll.append(one);
-    ll.append(three);
-    ll.append(three3);
-    ll.append(two2);
-    ll.append(three1);
-    ll.append(three2);
-
-    return ll;
   }
 
 

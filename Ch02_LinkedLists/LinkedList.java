@@ -16,6 +16,11 @@ class LinkedList {
     ll.append(three);
     ll.print();
 
+    ll = createList();
+    ll.print();
+    ll = createOrderedList();
+    ll.print();
+
   }
 
   private Node tail;
@@ -48,6 +53,49 @@ class LinkedList {
     }
 
     System.out.println("null");
+  }
+
+
+
+  public static LinkedList createList() {
+    LinkedList ll = new LinkedList();
+    Node one = new Node(1);
+    Node two = new Node(2);
+    Node three = new Node(3);
+    Node three1 = new Node(3);
+    Node three2 = new Node(3);
+    Node three3 = new Node(3);
+    Node two2 = new Node(2);
+
+    ll.append(two);
+    ll.append(one);
+    ll.append(three);
+    ll.append(three3);
+    ll.append(two2);
+    ll.append(three1);
+    ll.append(three2);
+
+    return ll;
+  }
+  public static LinkedList createOrderedList() {
+    LinkedList ll = new LinkedList();
+    Node one = new Node(1);
+    Node two = new Node(2);
+    Node three = new Node(3);
+    Node four = new Node(4);
+    Node five = new Node(5);
+    Node six = new Node(6);
+    Node seven = new Node(7);
+
+    ll.append(one);
+    ll.append(two);
+    ll.append(three);
+    ll.append(four);
+    ll.append(five);
+    ll.append(six);
+    ll.append(seven);
+
+    return ll;
   }
 }
 
