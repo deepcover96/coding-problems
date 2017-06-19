@@ -34,6 +34,8 @@ class LinkedList {
 
   public Node getHead() { return head; }
 
+  public void setHead(Node node) { head = node; }
+
   public void append(Node node) {
     if (head == null) {
       this.head = node;
@@ -42,6 +44,40 @@ class LinkedList {
     }
 
     this.tail = node;
+  }
+
+
+
+  // Remove current node from list, return it
+  public Node removeNextNode(Node previous) {
+
+    Node next = null;
+    Node current = null;
+
+    
+    if (previous == null)
+      current = head;  // if previous is null, we're removing head
+    else 
+      current = previous.getNext();
+
+    if (current != null)
+      next = current.getNext();  // get next node
+    else
+      return current;  // we have an empty
+
+    // update head if this is the first node
+    if (current == head)
+      head = next;
+
+    // update tail if this is the last node
+    if (current == tail)
+      tail = previous;
+
+    // remove reference to removed node
+    if (previous != null)
+      previous.setNext(next);
+
+    return current;
   }
 
   public void print() {
