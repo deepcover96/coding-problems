@@ -39,11 +39,12 @@ class LinkedList {
   public void append(Node node) {
     if (head == null) {
       this.head = node;
+      this.tail = node;
     } else {
       this.tail.setNext(node);
+      while (this.tail.getNext() != null)
+        this.tail = tail.getNext();
     }
-
-    this.tail = node;
   }
 
 
@@ -78,6 +79,16 @@ class LinkedList {
       previous.setNext(next);
 
     return current;
+  }
+
+  public int length() {
+    Node n = head;
+    int count = 0;
+    while (n != null) {
+      count += 1;
+      n = n.getNext();
+    }
+    return count;
   }
 
   public void print() {
