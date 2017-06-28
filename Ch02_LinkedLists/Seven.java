@@ -81,7 +81,7 @@ class Seven {
     if (llA == null || llB == null) return false;  // null check
     Node a = llA.getHead();
     Node b = llB.getHead();
-    HashSet set = new HashSet();
+    HashSet<Node> set = new HashSet<Node>();
 
     while (a != null) {
       set.add(a);
