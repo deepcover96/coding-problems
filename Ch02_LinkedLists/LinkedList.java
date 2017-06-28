@@ -51,12 +51,14 @@ class LinkedList {
         this.tail = tail.getNext();
         length += 1;
 
+        /* commented out since there is a detect-loop question later
         // detect circular list
         if (tail.getNext() == node) {
           System.out.println("Failure: circular list detected.");
           this.head = null;
           return;
         }
+        */
       }
     }
   }
