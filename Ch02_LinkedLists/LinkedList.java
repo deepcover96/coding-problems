@@ -25,25 +25,39 @@ class LinkedList {
 
   private Node tail;
   private Node head;
+  private int length;
 
 	// Singly-linked linked list
   public LinkedList() {
     this.head = null;
     this.tail = null;
+    this.length = 0;
   }
 
   public Node getHead() { return head; }
 
   public void setHead(Node node) { head = node; }
 
+  public int getLength() { return length; }
+
   public void append(Node node) {
     if (head == null) {
       this.head = node;
       this.tail = node;
+      length = 1;
     } else {
       this.tail.setNext(node);
-      while (this.tail.getNext() != null)
+      while (this.tail.getNext() != null) {
         this.tail = tail.getNext();
+        length += 1;
+
+        // detect circular list
+        if (tail.getNext() == node) {
+          System.out.println("Failure: circular list detected.");
+          this.head = null;
+          return;
+        }
+      }
     }
   }
 
@@ -99,7 +113,7 @@ class LinkedList {
       n = n.getNext();
     }
 
-    System.out.println("null");
+    System.out.println("null  (length: " + length + ")");
   }
 
 
