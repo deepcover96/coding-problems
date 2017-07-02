@@ -25,7 +25,42 @@ class Three {
     stack.push(sixteen);
     stack.push(nine);
     stack.push(one);
+
     stack.push(two);
+    stack.push(three);
+    stack.push(four);
+    stack.push(five);
+
+    stack.push(six);
+
+    stack.print();
+
+    stack.pop();
+    stack.pop();
+
+    stack.print();
+
+    stack.push(five);
+    
+    stack.push(six);
+
+    stack.print();
+
+    stack.popAt(1);
+
+    stack.print();
+
+    stack.popAt(1);
+    stack.popAt(1);
+    stack.popAt(1);
+
+    stack.print();
+
+    stack.popAt(1);
+
+    stack.print();
+
+    stack.push(ten);
     stack.print();
 
   }
@@ -38,6 +73,8 @@ class Three {
 // create a new stack once the previous one exceeds capacity.  SetOfStacks.push() and
 // SetOfStacks.pop() should behave identically to a single stack (that is, pop() should
 // return the same values as it would if there were just a single stack). 
+// Follow Up: Implement a function popAt(int index) which performs a pop operation on a
+// specific sub-stack.
 class SetOfStacks {
   private MinStack[] subStacks;
   private int threshold;
@@ -47,6 +84,7 @@ class SetOfStacks {
   // We will just use MinStack from the previous example as our sub-stack structure 
   public SetOfStacks(int threshold) {
     this.threshold = threshold;
+    maxStacks = 4;
     subStacks = new MinStack[maxStacks];
     index = 0;
     subStacks[index] = new MinStack(threshold);
@@ -74,9 +112,27 @@ class SetOfStacks {
     }
   }
 
-  public void print() {
-    for (int i = index - 1; i >= 0; i--) {
-      subStacks[i].print();
+  // I don't worry about stacks not being at full capacity,
+  // or empty for that matter.  Using a list for the sub-stacks
+  // would be better in practice, as it would be easier to get
+  // rid of empty stacks.
+  public Item popAt(int stackIndex) {
+    if (stackIndex < 0 || stackIndex > index) return null;
+
+    Item item = subStacks[stackIndex].pop();
+    if (item != null) {
+      return item;
+    } else {
+      if (stackIndex == 0) return null;
+      return popAt(stackIndex - 1);
     }
+  }
+
+  public void print() {
+    for (int i = index; i >= 0; i--) {
+      subStacks[i].print();
+      System.out.println();
+    }
+    System.out.println();
   }
 }
