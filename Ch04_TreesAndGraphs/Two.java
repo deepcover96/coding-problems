@@ -15,29 +15,24 @@ class Two {
   // elements, write an algorithm to create a binary search tree with minimal height.
   public static TreeNode createTree(int[] arr) {
   	if (arr == null || arr.length == 0) return null;
-  	TreeNode node = new TreeNode();
 		
-	return populateBranch(arr, 0, arr.length - 1, node);
+	return populateBranch(arr, 0, arr.length - 1);
   }
 
-  private static TreeNode populateBranch(int[] arr, int start, int end, TreeNode node) {
-  	int length = end - start + 1;
+  private static TreeNode populateBranch(int[] arr, int start, int end) {
+  	int length = end - start;
 	int middle = start + length/2;
 
-	node.setValue(arr[middle]);
-	System.out.println("val: " + arr[middle]);
+	// this branch complete
+	if (length < 0) return null;
 
-	// we have at least 1 left-sede node
-	if (length > 1) {
-		node.setLeft(new TreeNode());
-		populateBranch(arr, start, middle - 1, node.getLeft());
-	}
+	TreeNode node = new TreeNode(arr[middle]);
+	System.out.println("val: " + node.getValue());
 
-	// if > 2, then we will have at least one right-side node too.
-	if (length > 2) {
-		node.setRight(new TreeNode());
-		populateBranch(arr, middle + 1, end, node.getRight());
-	}
+	TreeNode left  = populateBranch(arr, start, middle - 1);
+	TreeNode right = populateBranch(arr, middle + 1, end);
+	node.setLeft(left);
+	node.setRight(right);
 
   	return node;
   }
